@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class test : MonoBehaviour //I am a donkey.
+public class Test : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
-        Application.Quit();
+        // this is matt's comment
     }
 
     // Update is called once per frame
