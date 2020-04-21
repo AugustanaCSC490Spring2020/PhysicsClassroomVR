@@ -7,6 +7,7 @@ public class Events : MonoBehaviour
 {
 
     public TextMeshProUGUI massText;
+    public GameObject FreeBodyArrow;
 
     public void OnIncreaseMassButtonPress(GameObject obj)
     {
@@ -27,6 +28,6 @@ public class Events : MonoBehaviour
 
     public void OnFreeBodyButtonPress()
     {
-
+        FreeBodyArrow.SetActive(!FreeBodyArrow.active);
     }
 }
