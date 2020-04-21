@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class Respawn : MonoBehaviour
 {
+    private Vector3 location;
+    public float limit;
 
-    public GameObject obj;
+    private void Start()
+    {
+        location = this.transform.position;
+    }
+
     void LateUpdate()
     {
-        if(obj.transform.position.y < -10)
+
+        if(this.transform.position.y < limit)
         {
-            obj.transform.position = new Vector3(2.263f, .9f, -12.285f);
+            this.transform.position = location;
         }
     }
 }

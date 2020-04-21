@@ -7,7 +7,8 @@ public class Events : MonoBehaviour
 {
 
     public TextMeshProUGUI angleText;
-    public TextMeshProUGUI massText;
+    public TextMeshProUGUI ballmassText;
+    public TextMeshProUGUI cubemassText;
     public GameObject FreeBodyArrow;
     public GameObject CannonCylinder;
     public float thrust = 500;
@@ -21,46 +22,60 @@ public class Events : MonoBehaviour
 
     public void OnIncreaseMassButtonPress(GameObject obj)
     {
-        float lastPressTime = 0;
-        if(lastPressTime + pressDelay > Time.unscaledTime)
-        {
-            Rigidbody rb = obj.GetComponent<Rigidbody>();
-            obj.transform.localScale += new Vector3(.1f, .1f, .1f);
-            rb.mass = rb.mass * 2f;
-            massText.SetText("Mass: {0}kg", rb.mass);
-        }
-        lastPressTime = Time.unscaledTime;
+
+        Rigidbody rb = obj.GetComponent<Rigidbody>();
+        obj.transform.localScale += new Vector3(.05f, .05f, .05f);
+        rb.mass = rb.mass * 2f;
+        ballmassText.SetText("Ball Mass: {0}kg", rb.mass);
+
         
     }
 
     public void OnDecreaseMassButtonPress(GameObject obj)
     {
-        float lastPressTime = 0;
-        if (lastPressTime + pressDelay > Time.unscaledTime)
-        {
+
             Rigidbody rb = obj.GetComponent<Rigidbody>();
-            obj.transform.localScale -= new Vector3(.1f, .1f, .1f);
+            obj.transform.localScale -= new Vector3(.05f, .05f, .05f);
             rb.mass = rb.mass * .5f;
-            massText.SetText("Mass: {0}kg", rb.mass);
-        }
-        lastPressTime = Time.unscaledTime;
+            ballmassText.SetText("Ball Mass: {0}kg", rb.mass);
+
     }
+
+
+    public void OnIncreaseCubeMassButtonPress(GameObject obj)
+    {
+
+        Rigidbody rb = obj.GetComponentInChildren<Rigidbody>();
+        rb.mass = rb.mass * 2f;
+        cubemassText.SetText("Cube Mass: {0}kg", rb.mass);
+
+
+    }
+
+    public void OnDecreaseCubeMassButtonPress(GameObject obj)
+    {
+
+        Rigidbody rb = obj.GetComponentInChildren<Rigidbody>();
+        rb.mass = rb.mass * .5f;
+        cubemassText.SetText("Cube Mass: {0}kg", rb.mass);
+
+    }
+
+
 
     public void OnFreeBodyButtonPress()
     {
-        float lastPressTime = 0;
-        if (lastPressTime + pressDelay > Time.unscaledTime)
-        {
+
             FreeBodyArrow.SetActive(!FreeBodyArrow.active);
-        }
-        lastPressTime = Time.unscaledTime;
+
     }
 
     public void OnLaunchPress()
     { 
-        Instantiate(projectile, CannonCylinder.transform.position, Quaternion.Euler(0f, 90f, 0f));
+        Instantiate(projectile, CannonCylinder.transform.position, 
+            Quaternion.Euler(CannonCylinder.transform.localRotation.x, CannonCylinder.transform.localRotation.y, CannonCylinder.transform.localRotation.z));
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
-        rb.AddForce(CannonCylinder.transform.forward * thrust);
+        rb.velocity = transform.TransformDirection(new Vector3(0,0, thrust));
 
     }
 
