@@ -17,6 +17,7 @@ public class Events : MonoBehaviour
     private bool canBePressed = true;
     private float pressDelay = 0.5f;
     private float rotate;
+    private float cannonAngle;
 
     
 
@@ -81,15 +82,18 @@ public class Events : MonoBehaviour
 
     public void OnIncreaseAngle()
     {
-            if (CannonCylinder.transform.localEulerAngles.z < 360)
-            {
-                CannonCylinder.transform.Rotate(new Vector3(0, 0, CannonCylinder.transform.localEulerAngles.z + 1));
-            }
+            //if (CannonCylinder.transform.localEulerAngles.z < 180)
+            //{
+                Quaternion change = Quaternion.Euler(CannonCylinder.transform.localEulerAngles);
+                change.z += 1;
+                CannonCylinder.transform.rotation = change;
+                cannonAngle = CannonCylinder.transform.rotation.z;
+            //}
     }
 
     public void OnDecreaseAngle()
     {
-            if (CannonCylinder.transform.localEulerAngles.z > 270)
+            if (CannonCylinder.transform.localEulerAngles.z > 90)
             {
                 CannonCylinder.transform.Rotate(new Vector3(0, 0, CannonCylinder.transform.localEulerAngles.z - 1));
             }
@@ -100,9 +104,9 @@ public class Events : MonoBehaviour
 
     void Update()
     {
-        rotate = CannonCylinder.transform.localEulerAngles.z;
+        rotate = cannonAngle;
         Debug.Log(rotate);
-        angleText.SetText("Angle: {0} degrees", rotate - 270);
+        angleText.SetText("Angle: {0} degrees", rotate);
 
     }
 
