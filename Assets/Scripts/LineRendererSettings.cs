@@ -72,4 +72,5 @@ public class LineRendererSettings : MonoBehaviour
     }
 
     //What Buttons Do.
+
 }
