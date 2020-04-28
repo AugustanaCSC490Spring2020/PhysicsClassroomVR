@@ -5,7 +5,7 @@ using UnityEngine;
 public class Respawn : MonoBehaviour
 {
     private Vector3 location;
-    public float limit;
+    public Vector3 limit;
 
     private void Start()
     {
@@ -15,7 +15,8 @@ public class Respawn : MonoBehaviour
     void LateUpdate()
     {
 
-        if(this.transform.position.y < limit)
+        if(this.transform.position.y < limit.y || this.transform.position.x < Mathf.Abs(limit.x) || 
+            this.transform.position.z < Mathf.Abs(limit.z))
         {
             this.transform.position = location;
         }
