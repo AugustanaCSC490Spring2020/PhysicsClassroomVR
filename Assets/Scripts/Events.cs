@@ -11,13 +11,12 @@ public class Events : MonoBehaviour
     public TextMeshProUGUI cubemassText;
     public GameObject FreeBodyArrow;
     public GameObject CannonCylinder;
-    public float thrust = 500;
+    public float thrust = 10;
     public GameObject projectile;
 
     private bool canBePressed = true;
     private float pressDelay = 0.5f;
-    private float rotate;
-    private float cannonAngle;
+    private float cannonAngle = 120;
 
     
 
@@ -74,39 +73,49 @@ public class Events : MonoBehaviour
     public void OnLaunchPress()
     { 
         Instantiate(projectile, CannonCylinder.transform.position, 
-            Quaternion.Euler(CannonCylinder.transform.localRotation.x, CannonCylinder.transform.localRotation.y, CannonCylinder.transform.localRotation.z));
+            Quaternion.Euler(CannonCylinder.transform.localEulerAngles));
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
-        rb.velocity = transform.TransformDirection(new Vector3(0,0, thrust));
+        //Thanks to Jason Weimann!
+        //https://unity3d.college/2017/06/30/unity3d-cannon-projectile-ballistics/
+        //
+        //float velocity = Mathf.Sqrt(thrust * Physics.gravity.magnitude / Mathf.Sin(2 * cannonAngle));
+        Vector3 velocityVector = new Vector3(Mathf.Sqrt(Mathf.Cos(cannonAngle)), Mathf.Sqrt(Mathf.Sin(cannonAngle)), 0);
+        rb.velocity = new Vector3(1,1,0);
+        Debug.Log(rb.velocity);
+        //rb.AddRelativeForce(velocityVector, ForceMode.Impulse);
 
     }
 
     public void OnIncreaseAngle()
     {
-            //if (CannonCylinder.transform.localEulerAngles.z < 180)
-            //{
+            if (CannonCylinder.transform.localEulerAngles.z < 180)
+            {
                 Quaternion change = Quaternion.Euler(CannonCylinder.transform.localEulerAngles);
-                change.z += 1;
+                change = change * Quaternion.Euler(0,0,1);
                 CannonCylinder.transform.rotation = change;
-                cannonAngle = CannonCylinder.transform.rotation.z;
-            //}
+                cannonAngle = CannonCylinder.transform.rotation.eulerAngles.z;
+            }
     }
 
     public void OnDecreaseAngle()
     {
-            if (CannonCylinder.transform.localEulerAngles.z > 90)
-            {
-                CannonCylinder.transform.Rotate(new Vector3(0, 0, CannonCylinder.transform.localEulerAngles.z - 1));
-            }
-        
-        
+        if (CannonCylinder.transform.localEulerAngles.z < 180)
+        {
+            Quaternion change = Quaternion.Euler(CannonCylinder.transform.localEulerAngles);
+            change = change * Quaternion.Euler(0, 0, -1);
+            CannonCylinder.transform.rotation = change;
+            cannonAngle = CannonCylinder.transform.rotation.eulerAngles.z;
+        }
+
+
     }
 
 
     void Update()
     {
-        rotate = cannonAngle;
-        Debug.Log(rotate);
-        angleText.SetText("Angle: {0} degrees", rotate);
+        
+        //Debug.Log(cannonAngle - 90);
+        angleText.SetText("Angle: {0} degrees", cannonAngle - 90);
 
     }
 
