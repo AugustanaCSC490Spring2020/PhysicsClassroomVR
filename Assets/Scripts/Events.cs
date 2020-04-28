@@ -84,7 +84,6 @@ public class Events : MonoBehaviour
         Vector3 velocityVector = new Vector3(Mathf.Sqrt(Mathf.Cos(cannonAngle)), Mathf.Sqrt(Mathf.Sin(cannonAngle)), 0);
         rb.velocity = velocityVector * velocity;
         Debug.Log(rb.velocity);
-        //rb.AddRelativeForce(velocityVector, ForceMode.Impulse);
 
     }
 
