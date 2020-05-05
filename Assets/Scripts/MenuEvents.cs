@@ -7,6 +7,7 @@ public class MenuEvents : MonoBehaviour
 {
     public void ChapterClick()
     {
+
             SceneManager.LoadScene(this.name);
     }
 
@@ -17,6 +18,7 @@ public class MenuEvents : MonoBehaviour
 
     public void ChapterSelectShow()
     {
+        Debug.Log("click");
         GameObject panel = new GameObject();
         panel = GameObject.Find("ChapterSelectPanel");
         panel.SetActive(!panel.activeSelf);

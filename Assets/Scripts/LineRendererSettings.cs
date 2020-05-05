@@ -67,6 +67,7 @@ public class LineRendererSettings : MonoBehaviour
         AlignLineRender(rend);
         if(AlignLineRender(rend) && (Input.GetAxis("Oculus_CrossPlatform_SecondaryIndexTrigger") > 0))
         {
+            Debug.Log("test");
             btn.onClick.Invoke();
         }
     }
