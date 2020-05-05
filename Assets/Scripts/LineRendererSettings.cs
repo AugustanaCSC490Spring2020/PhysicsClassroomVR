@@ -43,7 +43,7 @@ public class LineRendererSettings : MonoBehaviour
         if(Physics.Raycast(ray, out hit, layerMask))
         {
             btn = hit.collider.gameObject.GetComponent<Button>();
-            points[1] = transform.forward + new Vector3(0, 0, hit.distance);
+            points[1] = transform.forward + new Vector3(0, 0, 20);
             rend.startColor = Color.red;
             rend.endColor = Color.red;
             isHit = true;
@@ -67,7 +67,6 @@ public class LineRendererSettings : MonoBehaviour
         AlignLineRender(rend);
         if(AlignLineRender(rend) && (Input.GetAxis("Oculus_CrossPlatform_SecondaryIndexTrigger") > 0))
         {
-            Debug.Log("test");
             btn.onClick.Invoke();
         }
     }

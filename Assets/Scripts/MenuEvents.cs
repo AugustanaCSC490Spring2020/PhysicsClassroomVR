@@ -5,6 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class MenuEvents : MonoBehaviour
 {
+
+    private GameObject chapterPanel;
+    private GameObject optionsPanel;
+
+    private void Start()
+    {
+        chapterPanel = GameObject.Find("ChapterSelectPanel");
+        optionsPanel = GameObject.Find("OptionsPanel");
+    }
+
     public void ChapterClick()
     {
 
@@ -18,17 +28,12 @@ public class MenuEvents : MonoBehaviour
 
     public void ChapterSelectShow()
     {
-        Debug.Log("click");
-        GameObject panel = new GameObject();
-        panel = GameObject.Find("ChapterSelectPanel");
-        panel.SetActive(!panel.activeSelf);
+        chapterPanel.SetActive(!chapterPanel.activeSelf);
 
     }
 
     public void MenuOptionsShow()
     {
-        GameObject panel = new GameObject();
-        panel = GameObject.Find("OptionsPanel");
-        panel.SetActive(!panel.activeSelf);
+        optionsPanel.SetActive(!optionsPanel.activeSelf);
     }
 }

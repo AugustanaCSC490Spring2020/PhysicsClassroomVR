@@ -9,14 +9,14 @@ public class Events : MonoBehaviour
     public TextMeshProUGUI angleText;
     public TextMeshProUGUI ballmassText;
     public TextMeshProUGUI cubemassText;
-    public GameObject FreeBodyArrow;
-    public GameObject CannonCylinder;
+    public GameObject freeBodyArrow;
+    public GameObject cannonCylinder;
     public int thrust = 10;
     public GameObject projectile;
 
     private bool canBePressed = true;
     private float pressDelay = 0.5f;
-    private float cannonAngle = 120;
+    private float cannonAngle = 30;
 
     
 
@@ -25,6 +25,7 @@ public class Events : MonoBehaviour
 
         Rigidbody rb = obj.GetComponent<Rigidbody>();
         obj.transform.localScale += new Vector3(.05f, .05f, .05f);
+        //obj.transform.localScale = obj.transform.localScale * Mathf.Pow(2f, 1f/3f);
         rb.mass = rb.mass * 2f;
         ballmassText.SetText("Ball Mass: {0}kg", rb.mass);
 
@@ -41,24 +42,21 @@ public class Events : MonoBehaviour
 
     }
 
+    private void scaleCube(GameObject obj, float scaleFactor)
+    {
+        Rigidbody rb = obj.GetComponentInChildren<Rigidbody>();
+        rb.mass = rb.mass * scaleFactor;
+        cubemassText.SetText("Cube Mass: {0}kg", rb.mass);
+    }
 
     public void OnIncreaseCubeMassButtonPress(GameObject obj)
     {
-
-        Rigidbody rb = obj.GetComponentInChildren<Rigidbody>();
-        rb.mass = rb.mass * 2f;
-        cubemassText.SetText("Cube Mass: {0}kg", rb.mass);
-
-
+        scaleCube(obj, 2f);
     }
 
     public void OnDecreaseCubeMassButtonPress(GameObject obj)
     {
-
-        Rigidbody rb = obj.GetComponentInChildren<Rigidbody>();
-        rb.mass = rb.mass * .5f;
-        cubemassText.SetText("Cube Mass: {0}kg", rb.mass);
-
+        scaleCube(obj, 0.5f);
     }
 
 
@@ -66,45 +64,46 @@ public class Events : MonoBehaviour
     public void OnFreeBodyButtonPress()
     {
 
-            FreeBodyArrow.SetActive(!FreeBodyArrow.active);
+            freeBodyArrow.SetActive(!freeBodyArrow.active);
 
     }
 
     public void OnLaunchPress()
     { 
         GameObject ball = Instantiate(projectile);
-        ball.transform.position = CannonCylinder.transform.position + new Vector3(.8f, .5f, 0);
+        ball.transform.position = cannonCylinder.transform.position + new Vector3(.8f, .5f, 0);
         Rigidbody rb = ball.GetComponent<Rigidbody>();
         //Thanks to Jason Weimann!
         //https://unity3d.college/2017/06/30/unity3d-cannon-projectile-ballistics/
         //
-        float velocity = Mathf.Sqrt(thrust * Physics.gravity.magnitude / Mathf.Sin(2 * cannonAngle));
-        Vector3 velocityVector = new Vector3(Mathf.Sqrt(Mathf.Cos(cannonAngle)), Mathf.Sqrt(Mathf.Sin(cannonAngle)), 0);
-        rb.velocity = velocityVector * velocity;
-        //Debug.Log(rb.velocity);
+        //float velocity = Mathf.Sqrt(thrust * Physics.gravity.magnitude / Mathf.Sin(2 * Mathf.Deg2Rad * cannonAngle));
+        float speed = thrust;
+        Vector3 velocityVector = new Vector3(Mathf.Sqrt(Mathf.Cos(Mathf.Deg2Rad*cannonAngle)), Mathf.Sqrt(Mathf.Sin(Mathf.Deg2Rad*cannonAngle)), 0);
+        rb.velocity = velocityVector * speed;
+        Debug.Log(cannonAngle);
 
     }
 
     public void OnIncreaseAngle()
     {
-            if (CannonCylinder.transform.localEulerAngles.z < 180)
-            {
-                Quaternion change = Quaternion.Euler(CannonCylinder.transform.localEulerAngles);
+            //if (cannonCylinder.transform.localEulerAngles.z < 180)
+            //{
+                Quaternion change = Quaternion.Euler(cannonCylinder.transform.localEulerAngles);
                 change = change * Quaternion.Euler(0,0,1);
-                CannonCylinder.transform.rotation = change;
-                cannonAngle = CannonCylinder.transform.rotation.eulerAngles.z;
-            }
+                cannonCylinder.transform.rotation = change;
+                cannonAngle = (cannonCylinder.transform.rotation.eulerAngles.z + 90) % 360;
+            //}
     }
 
     public void OnDecreaseAngle()
     {
-        if (CannonCylinder.transform.localEulerAngles.z < 180)
-        {
-            Quaternion change = Quaternion.Euler(CannonCylinder.transform.localEulerAngles);
+        //if (cannonCylinder.transform.localEulerAngles.z < 180)
+        //{
+            Quaternion change = Quaternion.Euler(cannonCylinder.transform.localEulerAngles);
             change = change * Quaternion.Euler(0, 0, -1);
-            CannonCylinder.transform.rotation = change;
-            cannonAngle = CannonCylinder.transform.rotation.eulerAngles.z;
-        }
+            cannonCylinder.transform.rotation = change;
+            cannonAngle = (cannonCylinder.transform.rotation.eulerAngles.z + 90) % 360;
+        //}
 
 
     }
@@ -114,7 +113,7 @@ public class Events : MonoBehaviour
     {
         
         //Debug.Log(cannonAngle - 90);
-        angleText.SetText("Angle: {0} degrees", cannonAngle - 90);
+        angleText.SetText("Angle: {0} degrees", cannonAngle);
 
     }
 
