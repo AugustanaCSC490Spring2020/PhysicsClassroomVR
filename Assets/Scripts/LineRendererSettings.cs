@@ -8,7 +8,7 @@ public class LineRendererSettings : MonoBehaviour
 
     public GameObject panel;
     public Image img;
-    public Button btn;
+    private Button btn;
 
     [SerializeField] LineRenderer rend;
 
@@ -65,7 +65,7 @@ public class LineRendererSettings : MonoBehaviour
     void Update()
     {
         AlignLineRender(rend);
-        if(AlignLineRender(rend) && Input.GetAxis("Submit") > 0)
+        if(AlignLineRender(rend) && (Input.GetAxis("Oculus_CrossPlatform_SecondaryIndexTrigger") > 0))
         {
             btn.onClick.Invoke();
         }
