@@ -302,7 +302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.49803925, g: 0.54901963, b: 0.5529412, a: 0.3647059}
+  m_Color: {r: 0.49803925, g: 0.54901963, b: 0.5529412, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -555,9 +555,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 283240543}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: [{m_Target: {fileID: 1149799546}, m_MethodName: '', m_Mode: 1, m_Arguments: {
-            m_ObjectArgument: {fileID: 0}, m_ObjectArgumentAssemblyTypeName: '', m_IntArgument: 0,
-            m_FloatArgument: 0, m_StringArgument: '', m_BoolArgument: 0}, m_CallState: 2}]
+      m_Calls:
+      - m_Target: {fileID: 1149799546}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &283240543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -847,10 +856,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 450943569}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: [{m_Target: {fileID: 1149799551}, m_MethodName: ChapterSelectShow,
-          m_Mode: 1, m_Arguments: {m_ObjectArgument: {fileID: 0}, m_ObjectArgumentAssemblyTypeName: 'UnityEngine.Object,
-              UnityEngine', m_IntArgument: 0, m_FloatArgument: 0, m_StringArgument: '',
-            m_BoolArgument: 0}, m_CallState: 2}]
+      m_Calls:
+      - m_Target: {fileID: 1149799551}
+        m_MethodName: ChapterSelectShow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &450943569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2070,7 +2087,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 1291330382}
   img: {fileID: 0}
-  btn: {fileID: 0}
   rend: {fileID: 0}
   layerMask:
     serializedVersion: 2
@@ -3122,8 +3138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 1291330382}
   img: {fileID: 1291330384}
-  btn: {fileID: 0}
-  rend: {fileID: 0}
+  rend: {fileID: 1548749618}
   layerMask:
     serializedVersion: 2
     m_Bits: 0
@@ -4292,10 +4307,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2115152237}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: [{m_Target: {fileID: 1149799551}, m_MethodName: QuitGame, m_Mode: 1,
-          m_Arguments: {m_ObjectArgument: {fileID: 0}, m_ObjectArgumentAssemblyTypeName: 'UnityEngine.Object,
-              UnityEngine', m_IntArgument: 0, m_FloatArgument: 0, m_StringArgument: '',
-            m_BoolArgument: 0}, m_CallState: 2}]
+      m_Calls:
+      - m_Target: {fileID: 1149799551}
+        m_MethodName: QuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2115152237
 MonoBehaviour:
   m_ObjectHideFlags: 0
