@@ -72,8 +72,6 @@ public class Events : MonoBehaviour
 
     public void OnLaunchPress()
     { 
-        //Instantiate(projectile, CannonCylinder.transform.position + new Vector3(.5f,.5f,0), 
-        //   Quaternion.Euler(CannonCylinder.transform.localEulerAngles));
         GameObject ball = Instantiate(projectile);
         ball.transform.position = CannonCylinder.transform.position + new Vector3(.8f, .5f, 0);
         Rigidbody rb = ball.GetComponent<Rigidbody>();
@@ -83,7 +81,7 @@ public class Events : MonoBehaviour
         float velocity = Mathf.Sqrt(thrust * Physics.gravity.magnitude / Mathf.Sin(2 * cannonAngle));
         Vector3 velocityVector = new Vector3(Mathf.Sqrt(Mathf.Cos(cannonAngle)), Mathf.Sqrt(Mathf.Sin(cannonAngle)), 0);
         rb.velocity = velocityVector * velocity;
-        Debug.Log(rb.velocity);
+        //Debug.Log(rb.velocity);
 
     }
 

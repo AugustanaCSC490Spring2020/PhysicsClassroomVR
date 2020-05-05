@@ -24,6 +24,6 @@ public class Respawn : MonoBehaviour
             this.transform.position = location;
             rb.velocity = new Vector3(0, 0, 0);
         }
-        Debug.Log(location.x + limit.x);
+        //Debug.Log(location.x + limit.x);
     }
 }
