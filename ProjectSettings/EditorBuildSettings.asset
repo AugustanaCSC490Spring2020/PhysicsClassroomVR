@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 04e2cafca9c96d84aabe7d0575b65aa3
+  - enabled: 1
+    path: Assets/Scenes/NewtonianMechanics.unity
+    guid: 6ade5c87ae7700f4296dbeebbd0288d9
+  - enabled: 1
+    path: Assets/Scenes/Circuits.unity
+    guid: 927bc9070561e4e478a746c384938390
   m_configObjects: {}
