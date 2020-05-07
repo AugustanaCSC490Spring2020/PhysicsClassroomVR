@@ -40,7 +40,7 @@ public class LineRendererSettings : MonoBehaviour
         ray = new Ray(transform.position, transform.forward);
         RaycastHit hit;
 
-        if(Physics.Raycast(ray, out hit, layerMask))
+        if(Physics.Raycast(ray, out hit))
         {
             btn = hit.collider.gameObject.GetComponent<Button>();
             points[1] = transform.forward + new Vector3(0, 0, 20);
@@ -62,12 +62,14 @@ public class LineRendererSettings : MonoBehaviour
     }
 
 
-    void Update()
+    void FixedUpdate()
     {
         AlignLineRender(rend);
-        if(AlignLineRender(rend) && (Input.GetAxis("Oculus_CrossPlatform_SecondaryIndexTrigger") > 0))
+        if(AlignLineRender(rend) && (Input.GetAxis("Oculus_CrossPlatform_SecondaryIndexTrigger") > .88f
+            && (Input.GetAxis("Oculus_CrossPlatform_SecondaryIndexTrigger") < .99f)))
         {
             btn.onClick.Invoke();
+            Debug.DrawLine(points[1], transform.forward, Color.yellow, 5000f, true);
         }
     }
 
