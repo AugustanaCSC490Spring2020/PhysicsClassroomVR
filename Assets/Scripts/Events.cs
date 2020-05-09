@@ -24,7 +24,7 @@ public class Events : MonoBehaviour
     {
 
         Rigidbody rb = obj.GetComponent<Rigidbody>();
-        obj.transform.localScale += new Vector3(.05f, .05f, .05f);
+        //obj.transform.localScale += new Vector3(.05f, .05f, .05f);
         //obj.transform.localScale = obj.transform.localScale * Mathf.Pow(2f, 1f/3f);
         rb.mass = rb.mass * 2f;
         ballmassText.SetText("Ball Mass: {0}kg", rb.mass);
@@ -36,7 +36,7 @@ public class Events : MonoBehaviour
     {
 
             Rigidbody rb = obj.GetComponent<Rigidbody>();
-            obj.transform.localScale -= new Vector3(.05f, .05f, .05f);
+            //obj.transform.localScale -= new Vector3(.05f, .05f, .05f);
             rb.mass = rb.mass * .5f;
             ballmassText.SetText("Ball Mass: {0}kg", rb.mass);
 
@@ -86,24 +86,24 @@ public class Events : MonoBehaviour
 
     public void OnIncreaseAngle()
     {
-            //if (cannonCylinder.transform.localEulerAngles.z < 180)
-            //{
+            if (cannonAngle < 90)
+            {
                 Quaternion change = Quaternion.Euler(cannonCylinder.transform.localEulerAngles);
                 change = change * Quaternion.Euler(0,0,1);
                 cannonCylinder.transform.rotation = change;
                 cannonAngle = (cannonCylinder.transform.rotation.eulerAngles.z + 90) % 360;
-            //}
+            }
     }
 
     public void OnDecreaseAngle()
     {
-        //if (cannonCylinder.transform.localEulerAngles.z < 180)
-        //{
+        if (cannonAngle >= 1)
+        {
             Quaternion change = Quaternion.Euler(cannonCylinder.transform.localEulerAngles);
             change = change * Quaternion.Euler(0, 0, -1);
             cannonCylinder.transform.rotation = change;
             cannonAngle = (cannonCylinder.transform.rotation.eulerAngles.z + 90) % 360;
-        //}
+        }
 
 
     }
