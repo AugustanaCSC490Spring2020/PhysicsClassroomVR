@@ -5,14 +5,21 @@ using UnityEngine;
 public class RespawnInstance : MonoBehaviour
 {
     public GameObject obj;
+    public GameObject clone;
     private Vector3 location;
     public Vector3 limit;
     private Rigidbody rb;
+    private Vector3 scale;
+    private Vector3 rotation;
+    private bool spawnable = false;
+
 
     private void Start()
     {
         location = transform.position;
-        rb = this.GetComponent<Rigidbody>();
+        scale = transform.localScale;
+        rotation = transform.localEulerAngles;
+
     }
 
     void LateUpdate()
@@ -22,10 +29,18 @@ public class RespawnInstance : MonoBehaviour
             (transform.localPosition.y < limit.y) ||
             Mathf.Abs(transform.localPosition.z) > limit.z)
         {
-            Instantiate<GameObject>(obj);
-            obj.transform.position = location;
+            clone = Instantiate<GameObject>(obj);
+            clone.transform.parent = this.transform.parent;
+            clone.transform.position = location;
+            clone.transform.localScale = scale;
+            rb = clone.GetComponent<Rigidbody>();
             rb.velocity = new Vector3(0, 0, 0);
+            rb.isKinematic = false;
+            //clone.GetComponent<>
+            enabled = false;
         }
+        
         //Debug.Log(location.x + limit.x);
     }
+    
 }
