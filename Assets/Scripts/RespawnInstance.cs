@@ -29,9 +29,9 @@ public class RespawnInstance : MonoBehaviour
             (transform.localPosition.y < limit.y) ||
             Mathf.Abs(transform.localPosition.z) > limit.z)
         {
-            clone = Instantiate<GameObject>(obj);
-            clone.transform.parent = this.transform.parent;
-            clone.transform.position = location;
+            clone = Instantiate<GameObject>(obj, location, Quaternion.identity, this.transform.parent);
+            //clone.transform.parent = this.transform.parent;
+            //clone.transform.position = location;
             clone.transform.localScale = scale;
             rb = clone.GetComponent<Rigidbody>();
             rb.velocity = new Vector3(0, 0, 0);
