@@ -9,6 +9,7 @@ public class LineRendererSettings : MonoBehaviour
     public GameObject panel;
     public Image img;
     private Button btn;
+    private GameObject obj;
 
     [SerializeField] LineRenderer rend;
 
@@ -43,6 +44,7 @@ public class LineRendererSettings : MonoBehaviour
         if(Physics.Raycast(ray, out hit))
         {
             btn = hit.collider.gameObject.GetComponent<Button>();
+            obj = hit.collider.gameObject;
             points[1] = transform.forward + new Vector3(0, 0, 20);
             rend.startColor = Color.red;
             rend.endColor = Color.red;
@@ -69,7 +71,6 @@ public class LineRendererSettings : MonoBehaviour
             && (Input.GetAxis("Oculus_CrossPlatform_SecondaryIndexTrigger") < .99f)))
         {
             btn.onClick.Invoke();
-            Debug.DrawLine(points[1], transform.forward, Color.yellow, 5000f, true);
         }
     }
 
