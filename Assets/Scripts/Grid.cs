@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Grid : MonoBehaviour
 {
+    public float xBound = 5;
+    public float zBound = 5;
+
     [SerializeField]
     private float size = 1f;
 
@@ -28,9 +31,9 @@ public class Grid : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        for (float x = 0; x < 40; x += size)
+        for (float x = -5; x < xBound*zBound; x += size)
         {
-            for(float z= 0; z < 40; z += size)
+            for(float z= -5; z < xBound*zBound; z += size)
             {
                 var point = GetNearestPointOnGrid(new Vector3(x, 0f, z));
                 Gizmos.DrawSphere(point, 0.1f);

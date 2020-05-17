@@ -7,7 +7,7 @@ using Button = UnityEngine.UI.Button;
 
 public class LineRendererSettings : MonoBehaviour
 {
-
+    public LayerMask layerMask;
     public GameObject panel;
     public Image img;
     public Controller controller;
@@ -18,7 +18,6 @@ public class LineRendererSettings : MonoBehaviour
 
     Vector3[] points;
 
-    public LayerMask layerMask;
 
     // Start is called before the first frame update
     void Start()
@@ -73,10 +72,11 @@ public class LineRendererSettings : MonoBehaviour
         if(AlignLineRender(rend) && (Input.GetAxis("Oculus_CrossPlatform_SecondaryIndexTrigger") > .88f
             && (Input.GetAxis("Oculus_CrossPlatform_SecondaryIndexTrigger") < .99f)))
         {
-            btn.onClick.Invoke();
-        } else if (AlignLineRender(rend) && OVRInput.Get(OVRInput.Button.One, controller)) {
+            //btn.onClick.Invoke();
+        } else if (layerMask == (layerMask | (1 << obj.layer))
+            && AlignLineRender(rend) && OVRInput.GetDown(OVRInput.Button.One, controller)) {
             Quaternion change = Quaternion.Euler(obj.transform.localEulerAngles);
-            change = change * Quaternion.Euler(0, 0, 45);
+            change = change * Quaternion.Euler(0, 45, 0);
             obj.transform.rotation = change;
         }
     }

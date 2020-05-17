@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ObjectSnapper : MonoBehaviour
 {
+    public float yRotation;
+
     private Grid grid;
 
     private void Awake()
@@ -11,19 +13,30 @@ public class ObjectSnapper : MonoBehaviour
         grid = FindObjectOfType<Grid>();
     }
 
-    private void OnTriggerEnter(Collider collider)
+    //private void OnTriggerEnter(Collider collider)
+    //{
+    //    if (collider.gameObject.CompareTag("Ground"))
+    //    {
+    //        transform.position = grid.GetNearestPointOnGrid(transform.position);
+    //    }
+    //}
+
+    private void OnCollisionEnter(Collision collider)
     {
         if (collider.gameObject.CompareTag("Ground"))
         {
-            transform.position.Set((float) Mathf.RoundToInt(transform.position.x),
-                (float) Mathf.RoundToInt(transform.position.y),
-                (float) Mathf.RoundToInt(transform.position.z));
+            transform.position = grid.GetNearestPointOnGrid(transform.position);
+            transform.rotation = Quaternion.identity;
+
+            //yRotation = transform.rotation.y;
+            //float yRotationChange = yRotation % 45;
+            //if(yRotationChange != 0)
+            //{
+            //    Debug.Log("dsfgnd");
+            //    Vector3 rotate = new Vector3(0f, yRotation - yRotationChange, 0f);
+            //    transform.Rotate(rotate);
+            //}
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
