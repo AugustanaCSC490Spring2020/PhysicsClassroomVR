@@ -5,7 +5,7 @@ using UnityEngine;
 public class CircuitBehavior : MonoBehaviour
 {
 
-    float calculateEquivalentValue(GameObject component, BoxCollider collider) {
+   /* float calculateEquivalentValue(GameObject component, BoxCollider collider) {
         float eqValue = 0f;
         if (component.name.Contains("Resistor"))
         {
@@ -19,7 +19,7 @@ public class CircuitBehavior : MonoBehaviour
         }
 
 
-    }
+    }*/
 
 
 }

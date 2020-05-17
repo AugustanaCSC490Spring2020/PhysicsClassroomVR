@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2723707257258903072}
   - component: {fileID: 7859706219780028771}
   - component: {fileID: 6128581786620081965}
+  - component: {fileID: 114636897101355708}
   m_Layer: 0
   m_Name: Capacitor
   m_TagString: Untagged
@@ -89,7 +90,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 239902200867567512}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -142,3 +143,15 @@ MonoBehaviour:
   obj: {fileID: 239902200867567512}
   clone: {fileID: 0}
   limit: {x: 2, y: -2, z: 2}
+--- !u!114 &114636897101355708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239902200867567512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3447c54b969cb145af2e4d8a868eba9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

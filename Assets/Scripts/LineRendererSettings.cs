@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static OVRInput;
+using Button = UnityEngine.UI.Button;
 
 public class LineRendererSettings : MonoBehaviour
 {
 
     public GameObject panel;
     public Image img;
-    private Button btn;
+    public Controller controller;
+    private UnityEngine.UI.Button btn;
     private GameObject obj;
 
     [SerializeField] LineRenderer rend;
@@ -71,6 +74,10 @@ public class LineRendererSettings : MonoBehaviour
             && (Input.GetAxis("Oculus_CrossPlatform_SecondaryIndexTrigger") < .99f)))
         {
             btn.onClick.Invoke();
+        } else if (AlignLineRender(rend) && OVRInput.Get(OVRInput.Button.One, controller)) {
+            Quaternion change = Quaternion.Euler(obj.transform.localEulerAngles);
+            change = change * Quaternion.Euler(0, 0, 45);
+            obj.transform.rotation = change;
         }
     }
 
