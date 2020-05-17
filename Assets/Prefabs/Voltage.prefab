@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6407397390312085618}
   - component: {fileID: 5426321644889127060}
   - component: {fileID: 114446313422609794}
+  - component: {fileID: 114847618945290216}
   m_Layer: 0
   m_Name: Voltage
   m_TagString: Untagged
@@ -156,3 +157,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   yRotation: 0
+--- !u!114 &114847618945290216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6372633428543163072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbbc2377c890d224d8e15fc29c84d5d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

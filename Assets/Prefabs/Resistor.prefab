@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8773079840722955860}
   - component: {fileID: 7961442499917617439}
   - component: {fileID: 114848312815036974}
+  - component: {fileID: 114599953087843826}
   m_Layer: 0
   m_Name: Resistor
   m_TagString: Untagged
@@ -156,3 +157,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   yRotation: 0
+--- !u!114 &114599953087843826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4811346185199721186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbbc2377c890d224d8e15fc29c84d5d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: 5
+  isResistor: 1

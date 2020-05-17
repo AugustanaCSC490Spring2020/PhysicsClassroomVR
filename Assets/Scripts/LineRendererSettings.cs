@@ -10,9 +10,9 @@ public class LineRendererSettings : MonoBehaviour
     public LayerMask layerMask;
     public GameObject panel;
     public Image img;
-    public Controller controller;
     private UnityEngine.UI.Button btn;
     private GameObject obj;
+    private GameObject objToInspect;
 
     [SerializeField] LineRenderer rend;
 
@@ -68,17 +68,27 @@ public class LineRendererSettings : MonoBehaviour
 
     void FixedUpdate()
     {
+        OVRInput.FixedUpdate();
         AlignLineRender(rend);
         if(AlignLineRender(rend) && (Input.GetAxis("Oculus_CrossPlatform_SecondaryIndexTrigger") > .88f
             && (Input.GetAxis("Oculus_CrossPlatform_SecondaryIndexTrigger") < .99f)))
         {
             //btn.onClick.Invoke();
         } else if (layerMask == (layerMask | (1 << obj.layer))
-            && AlignLineRender(rend) && OVRInput.GetDown(OVRInput.Button.One, controller)) {
+            && AlignLineRender(rend) && OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.RTouch)) 
+        {
             Quaternion change = Quaternion.Euler(obj.transform.localEulerAngles);
             change = change * Quaternion.Euler(0, 45, 0);
             obj.transform.rotation = change;
+        } else if (layerMask == (layerMask | (1 << obj.layer))
+          && AlignLineRender(rend) && OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.LTouch))
+        {
+            Debug.Log("test1");
+            obj.GetComponent<CircuitBehavior>().ChangeValue();
+
         }
+
+
     }
 
     //What Buttons Do.
