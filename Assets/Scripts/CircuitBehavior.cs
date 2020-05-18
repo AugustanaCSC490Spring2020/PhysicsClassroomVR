@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using static OVRInput;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class CircuitBehavior : MonoBehaviour
 {
     public float value = 5;
-    public bool isResistor;
+    public bool isParallel;
     private Canvas canvas;
     private TextMeshProUGUI canvasText;
 
@@ -15,9 +16,11 @@ public class CircuitBehavior : MonoBehaviour
     {
         canvas = GetComponentInChildren<Canvas>();
         canvasText = canvas.GetComponentInChildren<TextMeshProUGUI>();
+
     }
     private void FixedUpdate()
     {
+
         canvasText.SetText("{0:1}", value);
     }
 
@@ -26,13 +29,10 @@ public class CircuitBehavior : MonoBehaviour
         
         Vector2 stickPos = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, OVRInput.Controller.RTouch);
         value = ((stickPos.y * 10f) + 10f) / 2f;
-        Debug.Log(stickPos);
     }
 
-    private void CalculateEquivalentValue()
-    {
 
-    }
+
 
 
 }

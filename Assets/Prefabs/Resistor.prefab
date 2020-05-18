@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7961442499917617439}
   - component: {fileID: 114848312815036974}
   - component: {fileID: 114599953087843826}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Resistor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,4 +170,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 5
-  isResistor: 1
+  isParallel: 0
+  r1: {fileID: 0}
+  r2: {fileID: 0}
+  r3: {fileID: 0}
+  voltage: {fileID: 0}

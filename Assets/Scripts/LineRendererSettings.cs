@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using static OVRInput;
 using Button = UnityEngine.UI.Button;
+using UnityEngine.SceneManagement;
 
 public class LineRendererSettings : MonoBehaviour
 {
@@ -45,8 +46,8 @@ public class LineRendererSettings : MonoBehaviour
 
         if(Physics.Raycast(ray, out hit))
         {
-            btn = hit.collider.gameObject.GetComponent<Button>();
             obj = hit.collider.gameObject;
+            btn = obj.GetComponentInChildren<Button>();
             points[1] = transform.forward + new Vector3(0, 0, 20);
             rend.startColor = Color.red;
             rend.endColor = Color.red;
@@ -70,10 +71,24 @@ public class LineRendererSettings : MonoBehaviour
     {
         OVRInput.FixedUpdate();
         AlignLineRender(rend);
-        if(AlignLineRender(rend) && (Input.GetAxis("Oculus_CrossPlatform_SecondaryIndexTrigger") > .88f
-            && (Input.GetAxis("Oculus_CrossPlatform_SecondaryIndexTrigger") < .99f)))
+        if (obj.CompareTag("SceneChanger") && AlignLineRender(rend))
         {
-            //btn.onClick.Invoke();
+            if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.LTouch))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+            }
+            else if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.RTouch))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+            else if (OVRInput.GetDown(OVRInput.Button.Start, OVRInput.Controller.LTouch))
+            {
+                SceneManager.LoadScene(0);
+            }
+        } else if (layerMask == (layerMask | (1 << obj.layer))
+            && AlignLineRender(rend) && (OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, OVRInput.Controller.RTouch) > .1f))
+        {
+            btn.onClick.Invoke();
         } else if (layerMask == (layerMask | (1 << obj.layer))
             && AlignLineRender(rend) && OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.RTouch)) 
         {
@@ -83,10 +98,8 @@ public class LineRendererSettings : MonoBehaviour
         } else if (layerMask == (layerMask | (1 << obj.layer))
           && AlignLineRender(rend) && OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.LTouch))
         {
-            Debug.Log("test1");
             obj.GetComponent<CircuitBehavior>().ChangeValue();
-
-        }
+        } 
 
 
     }
